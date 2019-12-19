@@ -4,7 +4,7 @@ The dashboard is built using React framework hosted by node.js server running on
 Dump the code of ESP32 station in ESP32 module and run the dashboard app on the Raspberry Pi.
 
 # Credit to : 
- Initial Framework : https://github.com/jarkko-hautakorpi/iBeacon-indoor-positioning-demo initial framework
+ Initial Framework : https://github.com/jarkko-hautakorpi/iBeacon-indoor-positioning-demo
 
 # Algorithm :
 1) Each ESP32 module is connected to the Raspberry Pi 3B+ with their respective MAC addresses via MQTT Protocol
@@ -23,3 +23,4 @@ Dump the code of ESP32 station in ESP32 module and run the dashboard app on the 
 
 # Flowchart :
 
+![image](https://user-images.githubusercontent.com/23289685/71164563-5e7d2800-2275-11ea-87c5-21ec9154e113.png)
