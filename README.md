@@ -24,3 +24,6 @@ Dump the code of ESP32 station in ESP32 module and run the dashboard app on the 
 # Flowchart :
 
 ![image](https://user-images.githubusercontent.com/23289685/71164563-5e7d2800-2275-11ea-87c5-21ec9154e113.png)
+
+# Block Diagram :
+![image](https://user-images.githubusercontent.com/23289685/71165845-8ff6f300-2277-11ea-91cf-38e6009d80ff.png)
