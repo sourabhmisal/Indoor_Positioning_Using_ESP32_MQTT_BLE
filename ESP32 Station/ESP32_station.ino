@@ -1,7 +1,7 @@
-#include <sstream>
-#include <string>
+#include <sstream> //Header providing string stream classes
+#include <string>  //This header introduces string types, character traits and a set of converting functions
 
-#include <WiFi.h>
+#include <WiFi.h>  //This allows ESP32 to connect to the internet
 #define MQTT_MAX_PACKET_SIZE 2048
 #include <PubSubClient.h>
 // Bluetooth LE
@@ -28,7 +28,6 @@ const char* mac;
 char myble[17];
 int res;
 int rsssii;
-char mukunda[3];
 char snum[3];
 
 WiFiClient espClient;
