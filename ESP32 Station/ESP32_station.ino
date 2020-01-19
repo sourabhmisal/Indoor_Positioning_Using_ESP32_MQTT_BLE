@@ -1,9 +1,10 @@
-#include <sstream> //Header providing string stream classes
-#include <string>  //This header introduces string types, character traits and a set of converting functions
+#include <sstream> 
+#include <string> 
 
-#include <WiFi.h>  //This allows ESP32 to connect to the internet
+#include <WiFi.h> 
 #define MQTT_MAX_PACKET_SIZE 2048
 #include <PubSubClient.h>
+
 // Bluetooth LE
 #include <BLEDevice.h>
 #include <BLEUtils.h>
@@ -13,22 +14,13 @@
 /* Add WiFi and MQTT credentials to credentials.h file */
 #include "credentials.h"
 
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-uint8_t temprature_sens_read();
-#ifdef __cplusplus
-}
-#endif
-
 //Scan time must be longer than beacon interval
 int beaconScanTime = 4;
 const char* mac;
 char myble[17];
 int res;
-int rsssii;
-char snum[3];
+int rssi_integer;
+char rssi_string[3];
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -42,14 +34,6 @@ typedef struct {
 uint8_t bufferIndex = 0;  // Found devices counter
 BeaconData buffer[50];    // Buffer to store found device data
 uint8_t message_char_buffer[MQTT_MAX_PACKET_SIZE];
-
-/*
-   Construct SenML compatible message with multiple measurements
-   see:
-   https://tools.ietf.org/html/draft-jennings-senml-10
-   Internal temp sensor:
-   https://github.com/pcbreflux/espressif/blob/master/esp32/arduino/sketchbook/ESP32_int_temp_sensor/ESP32_int_temp_sensor.ino
-*/
 
 class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
   public:
@@ -75,8 +59,8 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
 
       bufferIndex++;
       // Print everything via serial port for debugging
-      rsssii =  advertisedDevice.getRSSI();
-      itoa(rsssii, snum, 10);
+      rssi_integer =  advertisedDevice.getRSSI();
+      itoa(rssi_integer, rssi_string, 10);
 
     if (res == 0)
      {
@@ -87,7 +71,7 @@ class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
       client.publish("name3","TCZ");
       
       Serial.printf("RSSI: %d \n", advertisedDevice.getRSSI());
-      client.publish("rssi3",snum );
+      client.publish("rssi3",rssi_string);
       
      }
     }
